@@ -1,0 +1,35 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+    id 'com.gimral.flink-doc-generator' version '1.0.0'
+}
+
+group = "com.gimral"
+version = "1.0.0"
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion.set(org.gradle.jvm.toolchain.JavaLanguageVersion.of(17))
+    }
+}
+
+
+dependencies {
+    implementation("org.apache.flink:flink-annotations:2.0.0")
+    implementation("org.apache.flink:flink-core:2.0.0")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+}
+
+//flinkDocGenerator {
+//    outputDirectory = "docs"
+//    locations = ['com.gimral']
+//}
+
+tasks.test {
+    useJUnitPlatform()
+}
